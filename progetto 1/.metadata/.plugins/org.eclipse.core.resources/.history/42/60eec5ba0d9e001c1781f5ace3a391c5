@@ -1,0 +1,51 @@
+#%RAML 1.0
+title: Esercizio 3.1
+
+types: 
+  Account: !include /PersonDataTipe.raml
+
+#riga 15. il parametro è false così nella  query non devo passargli per forza il parametro system (che è un oggetto quindi è complicato da passare). se lo setti a false semplicemente non devi passarlo nei parametri dell'url (come se fosse la query)
+
+/person:
+  get:
+    queryParameters:
+      name:
+        type: string
+      system:
+        required: false 
+        type: object
+    responses:
+       200:
+        body:
+          application/json:
+            type: Account[]
+            examples:
+              output: !include /PersonExample.raml
+  post:
+    body:
+      application/json:
+        type: Account[]
+        examples:
+          input: !include PersonExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Account created
+  
+  /{ID}:
+     get:
+        queryParameters:
+          name:
+            required: false
+            type: string 
+      responses:
+       200:
+         body:
+             application/json:
+             type: Account
+              example:
+                output: !include /PersonExample.raml
+       404:
+                
