@@ -1,5 +1,5 @@
 #%RAML 1.0
-title: nttdata_account_sapi
+title: account_sapi
 
 types:
   account: !include /dataType/AccountDataType.raml
