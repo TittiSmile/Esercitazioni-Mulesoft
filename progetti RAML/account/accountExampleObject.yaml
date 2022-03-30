@@ -1,8 +1,0 @@
-#%RAML 1.0 NamedExample
-value: 
-  ID: 1a
-  address: 1234A
-  name: pippo
-  typeAccount: Personal
-  airMiles: 444
-  date: 2021-11-30T16:41:41.090Z 
