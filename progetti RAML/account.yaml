@@ -1,0 +1,67 @@
+#%RAML 1.0
+title: Esercizio 3.1
+# riga 15. il parametro è false così nella  query non devo passargli per forza il parametro system (che è un oggetto quindi è complicato da passare). se lo setti a false semplicemente non devi passarlo nei parametri dell'url (come se fosse la query)   
+types:    
+    Account: !include /PersonDataTipe.raml
+
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+    responses:
+      401:
+        description: Unauthorized, The client_id or client_secret are not valid or the client does not have access.
+      429:
+        description: The client used all of its request quota for the current period.
+      500:
+        description: An error occurred, see the specific message (Only if it is a WSDL endpoint).
+      503:
+        description: Contracts Information Unreachable.    
+
+/person:
+  is: [client-id-required]
+  get:    
+      queryParameters:    
+          name:    # il nome non è falso come system. nella query devo passarci un parametro che funge come nome. mettici una stringa qualsiasi sennò non va.
+              type: string
+          system:    
+              required: false 
+              type: object
+      responses:    
+          200:    
+              body:    
+                  application/json:    
+                      type: Account[]
+                      examples:    
+                          output: !include /PersonExample.raml
+  post:    
+      body:    
+          application/json:    
+              type: Account[]
+              examples:    
+                  input: !include /PersonExample.raml
+      responses:    
+          201:    
+              body:    
+                  application/json:    
+                      example:    
+                          message: Account created
+  
+  /{ID}:
+     is: [client-id-required]
+     get:
+       responses:
+        200:
+          body:
+            application/json:
+              type: Account
+              examples:
+                output: !include /PersonExampleObject.raml
+        404:
+          body:
+            application/json:
+              example:
+                message: errore

@@ -1,0 +1,11 @@
+#%RAML 1.0 NamedExample
+value:
+-
+  id: 0017Q00000DPWvIQAX
+  name: University of Arizona
+  accountNumber: CD736025
+  type: Account
+  phone: (520) 773-9050
+  city: Tucson
+  street: 888 N Euclid \nHallis Center, Room 501\nTucson, AZ 85721\nUnited States
+  state: AZ
