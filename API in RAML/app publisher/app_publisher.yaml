@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: app_publisher
+
+types:
+  app: !include /dataType/appDataType.raml
+
+/app:
+  post:
+    body:
+      application/json:
+        type: app
+        examples:
+          input: !include /example/appExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Messaggio mandato
+
+

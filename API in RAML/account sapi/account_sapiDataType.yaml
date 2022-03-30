@@ -1,0 +1,15 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  id?: string | nil
+  name: string |nil
+  accountNumber: string | nil
+  phone: string | nil
+  city: string | nil
+  street: string | nil
+  state: string |nil
+
+#perchè il ? vicino id????
+#l'id non deve essere obbligatorio nel body della     put. questo perchè put aggiorna una persona a partire da id (chiave primaria).   se non mettiamo ? nel body vuole sempre il campo id (che nel nostro caso non serve)
+    
